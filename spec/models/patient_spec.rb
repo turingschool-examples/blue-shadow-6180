@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Patient, type: :model do
+
+  describe "associations" do
+    it { should have_many(:appointments) }
+    it { should have_many(:doctors).through(:appointments) }
+  end
+  
   describe "scope :adults" do
     it "includes adult patients (age > 18)" do
       @patient1 = Patient.create(name: 'Katie Bryce', age: 24)
