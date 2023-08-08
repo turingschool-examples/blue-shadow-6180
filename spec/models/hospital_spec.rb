@@ -31,6 +31,7 @@ RSpec.describe Hospital do
       Appointment.create(doctor: @doctor1, patient: @patient2)
       Appointment.create(doctor: @doctor2, patient: @patient1)
     end
+    
     it "returns doctors ordered by patient count" do
       doctors_with_patient_counts = @hospital1.doctors_by_patient_count.to_a
 
