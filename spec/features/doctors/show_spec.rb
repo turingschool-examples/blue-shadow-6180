@@ -37,4 +37,27 @@ RSpec.describe "doctors show page", type: :feature do
     expect(page).to have_content(@patient1.name)
     expect(page).to have_content(@patient2.name)
   end
+
+
+  # User Story 2, Remove a Patient from a Doctor
+  # As a visitor
+  # When I visit a Doctor's show page
+  # Then next to each patient's name, I see a button to remove that patient from that doctor's caseload
+  # When I click that button for one patient
+  # I'm brought back to the Doctor's show page
+  # And I no longer see that patient's name listed
+  # And when I visit a different doctor's show page that is caring for the same patient,
+  # Then I see that the patient is still on the other doctor's caseload
+  it 'removes a patient from a doctor' do
+    expect(page).to have_content(@patient1.name)
+    expect(page).to have_content(@patient2.name)
+
+    within("#patient-#{patient1.id}") do
+      click_button 'Remove'
+    end
+
+    expect(current_path).to eq(doctor_path(@doctor1))
+    expect(page).to_not have_content(@patient1.name)
+    expect(page).to have_content(@patient2.name)
+  end
 end
