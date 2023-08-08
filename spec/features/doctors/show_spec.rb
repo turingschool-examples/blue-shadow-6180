@@ -4,22 +4,23 @@ require "rails_helper"
 RSpec.describe "doctors show page", type: :feature do
 
   before do
-    @hospital1 = Hospital.create(name: 'Hospital1')
+    @hospital1 = Hospital.create(name: 'Grey Sloan Memorial Hospital')
     @doctor1 = Doctor.create(
-      name: 'Doctor1',
-      specialty: 'Cardiology',
-      university: 'School1',
+      name: 'Meredith Grey',
+      specialty: 'General Surgery',
+      university: 'Harvard University',
       hospital: @hospital1
     )
     @doctor2 = Doctor.create(
-      name: 'Doctor2',
-      specialty: 'Pediatrics',
-      university: 'School2',
+      name: 'Alex Karev',
+      specialty: 'Pediatric Surgery',
+      university: 'Johns Hopkins University',
       hospital: @hospital1
     )
-
-    @patient1 = Patient.create(name: 'Patient 1', age: 30)
-    @patient2 = Patient.create(name: 'Patient 2', age: 40)
+    
+    @patient1 = Patient.create(name: 'Katie Bryce', age: 24)
+    @patient2 = Patient.create(name: 'Denny Duquette', age: 39)
+    @patient3 = Patient.create(name: 'Zola Shepherd', age: 2)
     
     Appointment.create(doctor: @doctor1, patient: @patient1)
     Appointment.create(doctor: @doctor1, patient: @patient2)
