@@ -11,12 +11,20 @@ RSpec.describe "doctors show page", type: :feature do
       university: 'School1',
       hospital: @hospital1
     )
+    @doctor2 = Doctor.create(
+      name: 'Doctor2',
+      specialty: 'Pediatrics',
+      university: 'School2',
+      hospital: @hospital1
+    )
+
     @patient1 = Patient.create(name: 'Patient 1', age: 30)
     @patient2 = Patient.create(name: 'Patient 2', age: 40)
-
+    
     Appointment.create(doctor: @doctor1, patient: @patient1)
     Appointment.create(doctor: @doctor1, patient: @patient2)
-
+    Appointment.create(doctor: @doctor2, patient: @patient1)
+    
     visit doctor_path(@doctor1)
   end
 
@@ -59,5 +67,9 @@ RSpec.describe "doctors show page", type: :feature do
     expect(current_path).to eq(doctor_path(@doctor1))
     expect(page).to_not have_content(@patient1.name)
     expect(page).to have_content(@patient2.name)
+
+    visit doctor_path(@doctor2)
+
+    expect(page).to have_content(@patient1.name)
   end
 end
