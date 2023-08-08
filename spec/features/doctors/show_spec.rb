@@ -52,7 +52,7 @@ RSpec.describe "doctors show page", type: :feature do
     expect(page).to have_content(@patient1.name)
     expect(page).to have_content(@patient2.name)
 
-    within("#patient-#{patient1.id}") do
+    within("#patient-#{@patient1.id}") do
       click_button 'Remove'
     end
 
