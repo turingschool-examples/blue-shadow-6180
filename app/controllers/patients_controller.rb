@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
   def index
-    @adult_patients = Patient.where("age > ?", 18).order(:name)
+    @adult_patients = Patient.adults_alphabetical_order
   end
 end

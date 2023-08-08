@@ -2,6 +2,8 @@ class Patient < ApplicationRecord
   has_many :appointments
   has_many :doctors, through: :appointments
 
-  scope :adults, -> { where("age > ?", 18) }
-  scope :alphabetical_order, -> { order(:name) }
+  def self.adults_alphabetical_order
+    where("age > ?", 18).order(:name)
+  end
+  
 end
